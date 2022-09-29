@@ -1,3 +1,4 @@
+"./Core/SevenSegmentDisplay/sevenSegmentDisplay.o"
 "./Core/Src/gpio.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32f1xx_hal_msp.o"
@@ -7,7 +8,6 @@
 "./Core/Src/system_stm32f1xx.o"
 "./Core/Src/tim.o"
 "./Core/Startup/startup_stm32f103c8tx.o"
-"./Core/sevenSegmentDisplay/sevenSegmentDisplay.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.o"

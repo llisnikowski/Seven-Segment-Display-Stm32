@@ -31,8 +31,8 @@ CPP_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/SevenSegmentDisplay \
 Core/Src \
 Core/Startup \
-Core/sevenSegmentDisplay \
 Drivers/STM32F1xx_HAL_Driver/Src \
 

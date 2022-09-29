@@ -24,7 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "../sevenSegmentDisplay/sevenSegmentDisplay.hpp"
+#include "../SevenSegmentDisplay/sevenSegmentDisplay.hpp"
 
 /* USER CODE END Includes */
 
@@ -59,7 +59,8 @@ void SystemClock_Config(void);
 
 
 
-SevenSegmentDisplay display;
+SevenSegmentDisplay<Port::A, Port::B> display;
+//SevenSegmentDisplay<*GPIOA_BASE, *GPIOA_BASE> display;
 
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
@@ -106,7 +107,7 @@ int main(void)
 
   HAL_TIM_Base_Start_IT(&htim1);
 
-  display.setNumber(0);
+  //display.setNumber(0);
 
   /* USER CODE END 2 */
 
