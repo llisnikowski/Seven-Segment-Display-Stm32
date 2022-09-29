@@ -532,6 +532,7 @@ SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_FIRST_
  80003aa:	2200      	movs	r2, #0
  80003ac:	70da      	strb	r2, [r3, #3]
 {
+
 }
  80003ae:	687b      	ldr	r3, [r7, #4]
  80003b0:	4618      	mov	r0, r3

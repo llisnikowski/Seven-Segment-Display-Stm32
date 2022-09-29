@@ -14,6 +14,8 @@
 
 template <Port SEGMENTS_PORT, uint8_t SEGMENT_FIRST_PIN, Port DIGITS_PORT, uint8_t DIGITS_FIRST_PIN>
 class SevenSegmentDisplay {
+	static_assert(SEGMENT_FIRST_PIN <= 8, "SEGMENT_FIRST_PIN can't be greater than 8");
+	static_assert(DIGITS_FIRST_PIN <= 12, "DIGITS_FIRST_PIN can't be greater than 12");
 public:
 	enum{
 		segA = 1 << SEGMENT_FIRST_PIN,
