@@ -59,7 +59,7 @@ void SystemClock_Config(void);
 
 
 
-SevenSegmentDisplay<Port::A, Port::B> display;
+SevenSegmentDisplay<Port::A, 0, Port::B, 4> display;
 //SevenSegmentDisplay<*GPIOA_BASE, *GPIOA_BASE> display;
 
 

@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000086b5  00000000  00000000  00020035  2**0
+ 12 .debug_info   000086f1  00000000  00000000  00020035  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000018d1  00000000  00000000  000286ea  2**0
+ 13 .debug_abbrev 000018d1  00000000  00000000  00028726  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000009c0  00000000  00000000  00029fc0  2**3
+ 14 .debug_aranges 000009c0  00000000  00000000  00029ff8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 000008f8  00000000  00000000  0002a980  2**3
+ 15 .debug_ranges 000008f8  00000000  00000000  0002a9b8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00002d6b  00000000  00000000  0002b278  2**0
+ 16 .debug_macro  00002d6b  00000000  00000000  0002b2b0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000a15a  00000000  00000000  0002dfe3  2**0
+ 17 .debug_line   0000a15b  00000000  00000000  0002e01b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00084ab5  00000000  00000000  0003813d  2**0
+ 18 .debug_str    00084b4a  00000000  00000000  00038176  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000050  00000000  00000000  000bcbf2  2**0
+ 19 .comment      00000050  00000000  00000000  000bccc0  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000027ac  00000000  00000000  000bcc44  2**2
+ 20 .debug_frame  000027ac  00000000  00000000  000bcd10  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -261,7 +261,7 @@ constexpr GPIO_TypeDef * operator&(Port port)
  8000262:	bd80      	pop	{r7, pc}
 
 08000264 <HAL_TIM_PeriodElapsedCallback>:
-SevenSegmentDisplay<Port::A, Port::B> display;
+SevenSegmentDisplay<Port::A, 0, Port::B, 4> display;
 //SevenSegmentDisplay<*GPIOA_BASE, *GPIOA_BASE> display;
 
 
@@ -278,7 +278,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
  8000272:	d102      	bne.n	800027a <HAL_TIM_PeriodElapsedCallback+0x16>
 	  display.setUpdateFlag();
  8000274:	4804      	ldr	r0, [pc, #16]	; (8000288 <HAL_TIM_PeriodElapsedCallback+0x24>)
- 8000276:	f000 f8a0 	bl	80003ba <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE13setUpdateFlagEv>
+ 8000276:	f000 f8a0 	bl	80003ba <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE13setUpdateFlagEv>
   }
 }
  800027a:	bf00      	nop
@@ -343,7 +343,7 @@ int main(void)
 
 	  display.update();
  80002b2:	480f      	ldr	r0, [pc, #60]	; (80002f0 <main+0x64>)
- 80002b4:	f000 f88d 	bl	80003d2 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE6updateEv>
+ 80002b4:	f000 f88d 	bl	80003d2 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE6updateEv>
 	  uint32_t now = HAL_GetTick();
  80002b8:	f000 fb5c 	bl	8000974 <HAL_GetTick>
  80002bc:	6078      	str	r0, [r7, #4]
@@ -371,7 +371,7 @@ int main(void)
  80002e0:	897b      	ldrh	r3, [r7, #10]
  80002e2:	4619      	mov	r1, r3
  80002e4:	4802      	ldr	r0, [pc, #8]	; (80002f0 <main+0x64>)
- 80002e6:	f000 f887 	bl	80003f8 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE9setNumberEt>
+ 80002e6:	f000 f887 	bl	80003f8 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE9setNumberEt>
 	  }
     /* USER CODE END WHILE */
 
@@ -510,13 +510,13 @@ __STATIC_FORCEINLINE void __disable_irq(void)
   while (1)
  8000392:	e7fe      	b.n	8000392 <Error_Handler+0x8>
 
-08000394 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EEC1Ev>:
+08000394 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EEC1Ev>:
 };
 
 //-------------
 
-template <Port SEGMENTS_PORT, Port DIGITS_PORT>
-SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::SevenSegmentDisplay()
+template <Port SEGMENTS_PORT, uint8_t SEGMENT_FIRST_PIN, Port DIGITS_PORT, uint8_t DIGITS_FIRST_PIN>
+SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_FIRST_PIN>::SevenSegmentDisplay()
  8000394:	b480      	push	{r7}
  8000396:	b083      	sub	sp, #12
  8000398:	af00      	add	r7, sp, #0
@@ -540,7 +540,7 @@ SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::SevenSegmentDisplay()
  80003b6:	bc80      	pop	{r7}
  80003b8:	4770      	bx	lr
 
-080003ba <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE13setUpdateFlagEv>:
+080003ba <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE13setUpdateFlagEv>:
 	void setUpdateFlag(){updateFlag = true;}
  80003ba:	b480      	push	{r7}
  80003bc:	b083      	sub	sp, #12
@@ -555,13 +555,13 @@ SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::SevenSegmentDisplay()
  80003ce:	bc80      	pop	{r7}
  80003d0:	4770      	bx	lr
 
-080003d2 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE6updateEv>:
+080003d2 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE6updateEv>:
 {
 	this->dots = dots;
 }
 
-template <Port SEGMENTS_PORT, Port DIGITS_PORT>
-void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::update()
+template <Port SEGMENTS_PORT, uint8_t SEGMENT_FIRST_PIN, Port DIGITS_PORT, uint8_t DIGITS_FIRST_PIN>
+void SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_FIRST_PIN>::update()
  80003d2:	b580      	push	{r7, lr}
  80003d4:	b082      	sub	sp, #8
  80003d6:	af00      	add	r7, sp, #0
@@ -571,14 +571,14 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::update()
  80003da:	687b      	ldr	r3, [r7, #4]
  80003dc:	78db      	ldrb	r3, [r3, #3]
  80003de:	2b00      	cmp	r3, #0
- 80003e0:	d005      	beq.n	80003ee <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE6updateEv+0x1c>
+ 80003e0:	d005      	beq.n	80003ee <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE6updateEv+0x1c>
 		updateFlag = false;
  80003e2:	687b      	ldr	r3, [r7, #4]
  80003e4:	2200      	movs	r2, #0
  80003e6:	70da      	strb	r2, [r3, #3]
 		forceUpdate();
  80003e8:	6878      	ldr	r0, [r7, #4]
- 80003ea:	f000 f81f 	bl	800042c <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv>
+ 80003ea:	f000 f81f 	bl	800042c <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv>
 	}
 }
  80003ee:	bf00      	nop
@@ -587,8 +587,8 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::update()
  80003f4:	bd80      	pop	{r7, pc}
 	...
 
-080003f8 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE9setNumberEt>:
-void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::setNumber(uint16_t number)
+080003f8 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE9setNumberEt>:
+void SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_FIRST_PIN>::setNumber(uint16_t number)
  80003f8:	b480      	push	{r7}
  80003fa:	b083      	sub	sp, #12
  80003fc:	af00      	add	r7, sp, #0
@@ -597,7 +597,7 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::setNumber(uint16_t number)
  8000402:	807b      	strh	r3, [r7, #2]
 	this->number = number % 10000;
  8000404:	887b      	ldrh	r3, [r7, #2]
- 8000406:	4a08      	ldr	r2, [pc, #32]	; (8000428 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE9setNumberEt+0x30>)
+ 8000406:	4a08      	ldr	r2, [pc, #32]	; (8000428 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE9setNumberEt+0x30>)
  8000408:	fba2 1203 	umull	r1, r2, r2, r3
  800040c:	0b52      	lsrs	r2, r2, #13
  800040e:	f242 7110 	movw	r1, #10000	; 0x2710
@@ -614,10 +614,10 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::setNumber(uint16_t number)
  8000426:	4770      	bx	lr
  8000428:	d1b71759 	.word	0xd1b71759
 
-0800042c <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv>:
+0800042c <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv>:
 
-template <Port SEGMENTS_PORT, Port DIGITS_PORT>
-void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
+template <Port SEGMENTS_PORT, uint8_t SEGMENT_FIRST_PIN, Port DIGITS_PORT, uint8_t DIGITS_FIRST_PIN>
+void SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_FIRST_PIN>::forceUpdate()
  800042c:	b590      	push	{r4, r7, lr}
  800042e:	b085      	sub	sp, #20
  8000430:	af00      	add	r7, sp, #0
@@ -625,7 +625,7 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
 {
 	static uint8_t currentDigit = 0;
 
-	(&DIGITS_PORT)->BSRR = DIGIT_0_Pin | DIGIT_1_Pin | DIGIT_2_Pin | DIGIT_3_Pin;
+	(&DIGITS_PORT)->BSRR = dig0 | dig1 | dig2 | dig3;
  8000434:	2001      	movs	r0, #1
  8000436:	f7ff ff07 	bl	8000248 <_Zad4Port>
  800043a:	4603      	mov	r3, r0
@@ -633,11 +633,11 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
  800043e:	611a      	str	r2, [r3, #16]
 
 	switch(currentDigit)
- 8000440:	4b5e      	ldr	r3, [pc, #376]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x190>)
+ 8000440:	4b5e      	ldr	r3, [pc, #376]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x190>)
  8000442:	781b      	ldrb	r3, [r3, #0]
  8000444:	2b03      	cmp	r3, #3
- 8000446:	f200 80b4 	bhi.w	80005b2 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x186>
- 800044a:	a201      	add	r2, pc, #4	; (adr r2, 8000450 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x24>)
+ 8000446:	f200 80b4 	bhi.w	80005b2 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x186>
+ 800044a:	a201      	add	r2, pc, #4	; (adr r2, 8000450 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x24>)
  800044c:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
  8000450:	08000461 	.word	0x08000461
  8000454:	080004a9 	.word	0x080004a9
@@ -648,14 +648,14 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
 		uint16_t code = codeOfDigit(number / 1000);
  8000460:	687b      	ldr	r3, [r7, #4]
  8000462:	881b      	ldrh	r3, [r3, #0]
- 8000464:	4a56      	ldr	r2, [pc, #344]	; (80005c0 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x194>)
+ 8000464:	4a56      	ldr	r2, [pc, #344]	; (80005c0 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x194>)
  8000466:	fba2 2303 	umull	r2, r3, r2, r3
  800046a:	099b      	lsrs	r3, r3, #6
  800046c:	b29b      	uxth	r3, r3
  800046e:	b2db      	uxtb	r3, r3
  8000470:	4619      	mov	r1, r3
  8000472:	6878      	ldr	r0, [r7, #4]
- 8000474:	f000 f8aa 	bl	80005cc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh>
+ 8000474:	f000 f8aa 	bl	80005cc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh>
  8000478:	4603      	mov	r3, r0
  800047a:	813b      	strh	r3, [r7, #8]
 		(&SEGMENTS_PORT)->BSRR = code | (~code << 16);
@@ -669,28 +669,28 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
  800048e:	4603      	mov	r3, r0
  8000490:	4622      	mov	r2, r4
  8000492:	611a      	str	r2, [r3, #16]
-		(&DIGITS_PORT)->BRR = DIGIT_0_Pin;
+		(&DIGITS_PORT)->BRR = dig0;
  8000494:	2001      	movs	r0, #1
  8000496:	f7ff fed7 	bl	8000248 <_Zad4Port>
  800049a:	4603      	mov	r3, r0
  800049c:	2210      	movs	r2, #16
  800049e:	615a      	str	r2, [r3, #20]
 		currentDigit = 1;
- 80004a0:	4b46      	ldr	r3, [pc, #280]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x190>)
+ 80004a0:	4b46      	ldr	r3, [pc, #280]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x190>)
  80004a2:	2201      	movs	r2, #1
  80004a4:	701a      	strb	r2, [r3, #0]
 		break;
- 80004a6:	e084      	b.n	80005b2 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x186>
+ 80004a6:	e084      	b.n	80005b2 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x186>
 	}
 	case 1:{
 		uint16_t code = codeOfDigit((number / 100) % 10);
  80004a8:	687b      	ldr	r3, [r7, #4]
  80004aa:	881b      	ldrh	r3, [r3, #0]
- 80004ac:	4a45      	ldr	r2, [pc, #276]	; (80005c4 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x198>)
+ 80004ac:	4a45      	ldr	r2, [pc, #276]	; (80005c4 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x198>)
  80004ae:	fba2 2303 	umull	r2, r3, r2, r3
  80004b2:	095b      	lsrs	r3, r3, #5
  80004b4:	b29a      	uxth	r2, r3
- 80004b6:	4b44      	ldr	r3, [pc, #272]	; (80005c8 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x19c>)
+ 80004b6:	4b44      	ldr	r3, [pc, #272]	; (80005c8 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x19c>)
  80004b8:	fba3 1302 	umull	r1, r3, r3, r2
  80004bc:	08d9      	lsrs	r1, r3, #3
  80004be:	460b      	mov	r3, r1
@@ -702,7 +702,7 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
  80004ca:	b2db      	uxtb	r3, r3
  80004cc:	4619      	mov	r1, r3
  80004ce:	6878      	ldr	r0, [r7, #4]
- 80004d0:	f000 f87c 	bl	80005cc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh>
+ 80004d0:	f000 f87c 	bl	80005cc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh>
  80004d4:	4603      	mov	r3, r0
  80004d6:	817b      	strh	r3, [r7, #10]
 		(&SEGMENTS_PORT)->BSRR = code | (~code << 16);
@@ -716,28 +716,28 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
  80004ea:	4603      	mov	r3, r0
  80004ec:	4622      	mov	r2, r4
  80004ee:	611a      	str	r2, [r3, #16]
-		(&DIGITS_PORT)->BRR = DIGIT_1_Pin;
+		(&DIGITS_PORT)->BRR = dig1;
  80004f0:	2001      	movs	r0, #1
  80004f2:	f7ff fea9 	bl	8000248 <_Zad4Port>
  80004f6:	4603      	mov	r3, r0
  80004f8:	2220      	movs	r2, #32
  80004fa:	615a      	str	r2, [r3, #20]
 		currentDigit = 2;
- 80004fc:	4b2f      	ldr	r3, [pc, #188]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x190>)
+ 80004fc:	4b2f      	ldr	r3, [pc, #188]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x190>)
  80004fe:	2202      	movs	r2, #2
  8000500:	701a      	strb	r2, [r3, #0]
 		break;
- 8000502:	e056      	b.n	80005b2 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x186>
+ 8000502:	e056      	b.n	80005b2 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x186>
 	}
 	case 2:{
 		uint16_t code = codeOfDigit((number / 10) % 10);
  8000504:	687b      	ldr	r3, [r7, #4]
  8000506:	881b      	ldrh	r3, [r3, #0]
- 8000508:	4a2f      	ldr	r2, [pc, #188]	; (80005c8 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x19c>)
+ 8000508:	4a2f      	ldr	r2, [pc, #188]	; (80005c8 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x19c>)
  800050a:	fba2 2303 	umull	r2, r3, r2, r3
  800050e:	08db      	lsrs	r3, r3, #3
  8000510:	b29a      	uxth	r2, r3
- 8000512:	4b2d      	ldr	r3, [pc, #180]	; (80005c8 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x19c>)
+ 8000512:	4b2d      	ldr	r3, [pc, #180]	; (80005c8 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x19c>)
  8000514:	fba3 1302 	umull	r1, r3, r3, r2
  8000518:	08d9      	lsrs	r1, r3, #3
  800051a:	460b      	mov	r3, r1
@@ -749,7 +749,7 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
  8000526:	b2db      	uxtb	r3, r3
  8000528:	4619      	mov	r1, r3
  800052a:	6878      	ldr	r0, [r7, #4]
- 800052c:	f000 f84e 	bl	80005cc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh>
+ 800052c:	f000 f84e 	bl	80005cc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh>
  8000530:	4603      	mov	r3, r0
  8000532:	81bb      	strh	r3, [r7, #12]
 		(&SEGMENTS_PORT)->BSRR = code | (~code << 16);
@@ -763,24 +763,24 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
  8000546:	4603      	mov	r3, r0
  8000548:	4622      	mov	r2, r4
  800054a:	611a      	str	r2, [r3, #16]
-		(&DIGITS_PORT)->BRR = DIGIT_2_Pin;
+		(&DIGITS_PORT)->BRR = dig2;
  800054c:	2001      	movs	r0, #1
  800054e:	f7ff fe7b 	bl	8000248 <_Zad4Port>
  8000552:	4603      	mov	r3, r0
  8000554:	2240      	movs	r2, #64	; 0x40
  8000556:	615a      	str	r2, [r3, #20]
 		currentDigit = 3;
- 8000558:	4b18      	ldr	r3, [pc, #96]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x190>)
+ 8000558:	4b18      	ldr	r3, [pc, #96]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x190>)
  800055a:	2203      	movs	r2, #3
  800055c:	701a      	strb	r2, [r3, #0]
 		break;
- 800055e:	e028      	b.n	80005b2 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x186>
+ 800055e:	e028      	b.n	80005b2 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x186>
 	}
 	case 3:{
 		uint16_t code = codeOfDigit(number % 10);
  8000560:	687b      	ldr	r3, [r7, #4]
  8000562:	881a      	ldrh	r2, [r3, #0]
- 8000564:	4b18      	ldr	r3, [pc, #96]	; (80005c8 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x19c>)
+ 8000564:	4b18      	ldr	r3, [pc, #96]	; (80005c8 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x19c>)
  8000566:	fba3 1302 	umull	r1, r3, r3, r2
  800056a:	08d9      	lsrs	r1, r3, #3
  800056c:	460b      	mov	r3, r1
@@ -792,7 +792,7 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
  8000578:	b2db      	uxtb	r3, r3
  800057a:	4619      	mov	r1, r3
  800057c:	6878      	ldr	r0, [r7, #4]
- 800057e:	f000 f825 	bl	80005cc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh>
+ 800057e:	f000 f825 	bl	80005cc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh>
  8000582:	4603      	mov	r3, r0
  8000584:	81fb      	strh	r3, [r7, #14]
 		(&SEGMENTS_PORT)->BSRR = code | (~code << 16);
@@ -806,14 +806,14 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
  8000598:	4603      	mov	r3, r0
  800059a:	4622      	mov	r2, r4
  800059c:	611a      	str	r2, [r3, #16]
-		(&DIGITS_PORT)->BRR = DIGIT_3_Pin;
+		(&DIGITS_PORT)->BRR = dig3;
  800059e:	2001      	movs	r0, #1
  80005a0:	f7ff fe52 	bl	8000248 <_Zad4Port>
  80005a4:	4603      	mov	r3, r0
  80005a6:	2280      	movs	r2, #128	; 0x80
  80005a8:	615a      	str	r2, [r3, #20]
 		currentDigit = 0;
- 80005aa:	4b04      	ldr	r3, [pc, #16]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11forceUpdateEv+0x190>)
+ 80005aa:	4b04      	ldr	r3, [pc, #16]	; (80005bc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11forceUpdateEv+0x190>)
  80005ac:	2200      	movs	r2, #0
  80005ae:	701a      	strb	r2, [r3, #0]
 		break;
@@ -831,10 +831,10 @@ void SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::forceUpdate()
  80005c4:	51eb851f 	.word	0x51eb851f
  80005c8:	cccccccd 	.word	0xcccccccd
 
-080005cc <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh>:
+080005cc <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh>:
 
-template <Port SEGMENTS_PORT, Port DIGITS_PORT>
-uint16_t SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::codeOfDigit(uint8_t digit)
+template <Port SEGMENTS_PORT, uint8_t SEGMENT_FIRST_PIN, Port DIGITS_PORT, uint8_t DIGITS_FIRST_PIN>
+uint16_t SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_FIRST_PIN>::codeOfDigit(uint8_t digit)
  80005cc:	b480      	push	{r7}
  80005ce:	b083      	sub	sp, #12
  80005d0:	af00      	add	r7, sp, #0
@@ -845,8 +845,8 @@ uint16_t SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::codeOfDigit(uint8_t di
 	switch(digit)
  80005d8:	78fb      	ldrb	r3, [r7, #3]
  80005da:	2b09      	cmp	r3, #9
- 80005dc:	d82a      	bhi.n	8000634 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x68>
- 80005de:	a201      	add	r2, pc, #4	; (adr r2, 80005e4 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x18>)
+ 80005dc:	d82a      	bhi.n	8000634 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x68>
+ 80005de:	a201      	add	r2, pc, #4	; (adr r2, 80005e4 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x18>)
  80005e0:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
  80005e4:	0800060d 	.word	0x0800060d
  80005e8:	08000611 	.word	0x08000611
@@ -862,43 +862,43 @@ uint16_t SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::codeOfDigit(uint8_t di
 	case 0:
 		return segA | segB | segC | segD | segE | segF;
  800060c:	233f      	movs	r3, #63	; 0x3f
- 800060e:	e012      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 800060e:	e012      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	case 1:
 		return segB | segC;
  8000610:	2306      	movs	r3, #6
- 8000612:	e010      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 8000612:	e010      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	case 2:
 		return segA | segB | segD | segE | segG;
  8000614:	235b      	movs	r3, #91	; 0x5b
- 8000616:	e00e      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 8000616:	e00e      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	case 3:
 		return segA | segB | segC | segD | segG;
  8000618:	234f      	movs	r3, #79	; 0x4f
- 800061a:	e00c      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 800061a:	e00c      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	case 4:
 		return segB | segC | segF | segG;
  800061c:	2366      	movs	r3, #102	; 0x66
- 800061e:	e00a      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 800061e:	e00a      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	case 5:
 		return segA | segC | segD | segF | segG;
  8000620:	236d      	movs	r3, #109	; 0x6d
- 8000622:	e008      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 8000622:	e008      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	case 6:
 		return segA | segC | segD | segE | segF | segG;
  8000624:	237d      	movs	r3, #125	; 0x7d
- 8000626:	e006      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 8000626:	e006      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	case 7:
 		return segA | segB | segC;
  8000628:	2307      	movs	r3, #7
- 800062a:	e004      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 800062a:	e004      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	case 8:
 		return segA | segB | segC | segD | segE | segF | segG;
  800062c:	237f      	movs	r3, #127	; 0x7f
- 800062e:	e002      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 800062e:	e002      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	case 9:
 		return segA | segB | segC | segD | segF | segG;
  8000630:	236f      	movs	r3, #111	; 0x6f
- 8000632:	e000      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EE11codeOfDigitEh+0x6a>
+ 8000632:	e000      	b.n	8000636 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EE11codeOfDigitEh+0x6a>
 	default:
 		return 0;
  8000634:	2300      	movs	r3, #0
@@ -927,9 +927,9 @@ uint16_t SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::codeOfDigit(uint8_t di
  8000652:	f64f 72ff 	movw	r2, #65535	; 0xffff
  8000656:	4293      	cmp	r3, r2
  8000658:	d102      	bne.n	8000660 <_Z41__static_initialization_and_destruction_0ii+0x20>
-SevenSegmentDisplay<Port::A, Port::B> display;
+SevenSegmentDisplay<Port::A, 0, Port::B, 4> display;
  800065a:	4809      	ldr	r0, [pc, #36]	; (8000680 <_Z41__static_initialization_and_destruction_0ii+0x40>)
- 800065c:	f7ff fe9a 	bl	8000394 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EEC1Ev>
+ 800065c:	f7ff fe9a 	bl	8000394 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EEC1Ev>
  8000660:	687b      	ldr	r3, [r7, #4]
  8000662:	2b00      	cmp	r3, #0
  8000664:	d107      	bne.n	8000676 <_Z41__static_initialization_and_destruction_0ii+0x36>
@@ -938,7 +938,7 @@ SevenSegmentDisplay<Port::A, Port::B> display;
  800066c:	4293      	cmp	r3, r2
  800066e:	d102      	bne.n	8000676 <_Z41__static_initialization_and_destruction_0ii+0x36>
  8000670:	4803      	ldr	r0, [pc, #12]	; (8000680 <_Z41__static_initialization_and_destruction_0ii+0x40>)
- 8000672:	f000 f807 	bl	8000684 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EED1Ev>
+ 8000672:	f000 f807 	bl	8000684 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EED1Ev>
 }
  8000676:	bf00      	nop
  8000678:	3708      	adds	r7, #8
@@ -947,8 +947,8 @@ SevenSegmentDisplay<Port::A, Port::B> display;
  800067e:	bf00      	nop
  8000680:	20000028 	.word	0x20000028
 
-08000684 <_ZN19SevenSegmentDisplayIL4Port0ELS0_1EED1Ev>:
-SevenSegmentDisplay<SEGMENTS_PORT, DIGITS_PORT>::~SevenSegmentDisplay()
+08000684 <_ZN19SevenSegmentDisplayIL4Port0ELh0ELS0_1ELh4EED1Ev>:
+SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_FIRST_PIN>::~SevenSegmentDisplay()
  8000684:	b480      	push	{r7}
  8000686:	b083      	sub	sp, #12
  8000688:	af00      	add	r7, sp, #0
