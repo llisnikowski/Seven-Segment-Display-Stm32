@@ -115,6 +115,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   uint32_t last_ms = HAL_GetTick();
   uint16_t i = 0;
+  uint8_t dots;
   while (1)
   {
 
@@ -125,6 +126,11 @@ int main(void)
 		  i++;
 		  if(i > 9999) i = 0;
 		  display.setNumber(i);
+		  if(!(i % 27)){
+			  dots++;
+			  if(dots > 0x0f) dots = 0;
+			  display.setDots(dots);
+		  }
 	  }
     /* USER CODE END WHILE */
 

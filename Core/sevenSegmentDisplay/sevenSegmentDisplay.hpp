@@ -12,6 +12,7 @@
 #include "gpio.h"
 #include "../TemplateParametr/gpioParametr.hpp"
 
+
 template <Port SEGMENTS_PORT, uint8_t SEGMENT_FIRST_PIN, Port DIGITS_PORT, uint8_t DIGITS_FIRST_PIN>
 class SevenSegmentDisplay {
 	static_assert(SEGMENT_FIRST_PIN <= 8, "SEGMENT_FIRST_PIN can't be greater than 8");
@@ -45,6 +46,7 @@ public:
 
 private:
 	uint16_t codeOfDigit(uint8_t digit);
+	uint16_t codeOfDots(uint8_t place);
 
 	uint16_t number;
 	uint8_t dots;
@@ -95,21 +97,21 @@ void SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_F
 	switch(currentDigit)
 	{
 	case 0:{
-		uint16_t code = codeOfDigit(number / 1000);
+		uint16_t code = codeOfDigit(number / 1000) | codeOfDots(3);
 		(&SEGMENTS_PORT)->BSRR = code | (~code << 16);
 		(&DIGITS_PORT)->BRR = dig0;
 		currentDigit = 1;
 		break;
 	}
 	case 1:{
-		uint16_t code = codeOfDigit((number / 100) % 10);
+		uint16_t code = codeOfDigit((number / 100) % 10) | codeOfDots(2);
 		(&SEGMENTS_PORT)->BSRR = code | (~code << 16);
 		(&DIGITS_PORT)->BRR = dig1;
 		currentDigit = 2;
 		break;
 	}
 	case 2:{
-		uint16_t code = codeOfDigit((number / 10) % 10);
+		uint16_t code = codeOfDigit((number / 10) % 10) | codeOfDots(1);
 		(&SEGMENTS_PORT)->BSRR = code | (~code << 16);
 		(&DIGITS_PORT)->BRR = dig2;
 		currentDigit = 3;
@@ -117,7 +119,7 @@ void SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_F
 	}
 	case 3:{
 		uint16_t code = codeOfDigit(number % 10);
-		(&SEGMENTS_PORT)->BSRR = code | (~code << 16);
+		(&SEGMENTS_PORT)->BSRR = code | (~code << 16) | codeOfDots(0);
 		(&DIGITS_PORT)->BRR = dig3;
 		currentDigit = 0;
 		break;
@@ -153,6 +155,16 @@ uint16_t SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGI
 	default:
 		return 0;
 	}
+}
+
+template <Port SEGMENTS_PORT, uint8_t SEGMENT_FIRST_PIN, Port DIGITS_PORT, uint8_t DIGITS_FIRST_PIN>
+uint16_t SevenSegmentDisplay<SEGMENTS_PORT, SEGMENT_FIRST_PIN, DIGITS_PORT, DIGITS_FIRST_PIN>::codeOfDots(uint8_t place)
+{
+	uint8_t isDots = dots & (0x08 >> place);
+	if(isDots){
+		return segH;
+	}
+	return 0;
 }
 
 #endif /* SEVENSEGMENTDISPLAY_SEVENSEGMENTDISPLAY_HPP_ */
