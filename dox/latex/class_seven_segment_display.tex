@@ -1,0 +1,271 @@
+\hypertarget{class_seven_segment_display}{}\doxysection{Seven\+Segment\+Display\texorpdfstring{$<$}{<} SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_seven_segment_display}\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+
+
+The \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}} class provides support for four-\/digit seven segment display.  
+
+
+
+
+{\ttfamily \#include $<$seven\+Segment\+Display.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_seven_segment_display_a5dbf9f4d3a0a04e34213d72eac677194}{Seven\+Segment\+Display}} ()
+\begin{DoxyCompactList}\small\item\em Create new \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_seven_segment_display_a722d36c9af3a2477fae6b289d981a132}\label{class_seven_segment_display_a722d36c9af3a2477fae6b289d981a132}} 
+{\bfseries $\sim$\+Seven\+Segment\+Display} ()
+\begin{DoxyCompactList}\small\item\em Destructor \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_seven_segment_display_ab7dfb158cbbb7915ebfad2461d87cbb1}{set\+Number}} (uint16\+\_\+t \mbox{\hyperlink{class_seven_segment_display_a4c0734083989edca78f98d8dc6cdeddd}{number}})
+\begin{DoxyCompactList}\small\item\em This function allows you to set the displayed number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_seven_segment_display_ab12b79b164747c3f50a7577315e2de7d}{set\+Dots}} (uint8\+\_\+t \mbox{\hyperlink{class_seven_segment_display_acd3a7e2ddff8f861fd7090ffb529def7}{dots}})
+\begin{DoxyCompactList}\small\item\em This function allows you to set dots on display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_seven_segment_display_a8245135a3620eb362b7bb3539f21a115}{update}} ()
+\begin{DoxyCompactList}\small\item\em The function refresh next digit if update\+Flag is set. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_seven_segment_display_af3405e4f9d91b6112bc70977cc13faf0}\label{class_seven_segment_display_af3405e4f9d91b6112bc70977cc13faf0}} 
+void {\bfseries force\+Update} ()
+\begin{DoxyCompactList}\small\item\em The function force refresh next digit without checking update\+Flag. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_seven_segment_display_adf8076f14623a21fca4ef3608d63ad0a}{set\+Update\+Flag}} ()
+\begin{DoxyCompactList}\small\item\em The function sets update\+Flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_seven_segment_display_ad9561b8182691c72f14a2e2a8066a650}\label{class_seven_segment_display_ad9561b8182691c72f14a2e2a8066a650}} 
+enum \{ \newline
+{\bfseries segA} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} SEGMENT\+\_\+\+FIRST\+\_\+\+PIN
+, {\bfseries segB} = segA \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries segC} = segB \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries segD} = segC \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, \newline
+{\bfseries segE} = segD \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries segF} = segE \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries segG} = segF \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries segH} = segG \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+ \}
+\begin{DoxyCompactList}\small\item\em The pins of successive segments. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_seven_segment_display_a9e90157e42381539b5a1f0b66ff522dc}\label{class_seven_segment_display_a9e90157e42381539b5a1f0b66ff522dc}} 
+enum \{ {\bfseries dig0} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} DIGITS\+\_\+\+FIRST\+\_\+\+PIN
+, {\bfseries dig1} = dig0 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries dig2} = dig1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries dig3} = dig2 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+ \}
+\begin{DoxyCompactList}\small\item\em The pins of successive digits. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_seven_segment_display_a4fdbdde350d32250977aae0559dcb7a9}{code\+Of\+Digit}} (uint8\+\_\+t digit)
+\begin{DoxyCompactList}\small\item\em The function return seven-\/segment code from digit. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_seven_segment_display_a1b9e89aed027c88cb796d7083f147b73}{code\+Of\+Dots}} (uint8\+\_\+t place)
+\begin{DoxyCompactList}\small\item\em The function return the character of dot if the dot is set in a given place. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_seven_segment_display_a4c0734083989edca78f98d8dc6cdeddd}{number}}
+\begin{DoxyCompactList}\small\item\em The displayed number. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_seven_segment_display_acd3a7e2ddff8f861fd7090ffb529def7}{dots}}
+\begin{DoxyCompactList}\small\item\em The displayed dots. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_seven_segment_display_a7718d14f381bd4a2164646920575359b}{update\+Flag}}
+\begin{DoxyCompactList}\small\item\em The flag for refreshing the next digit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_seven_segment_display_a233415a908d88a127e401f1ef8eade00}\label{class_seven_segment_display_a233415a908d88a127e401f1ef8eade00}} 
+uint8\+\_\+t {\bfseries current\+Display\+Digit}
+\begin{DoxyCompactList}\small\item\em Indicator of the refresh digit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$\newline
+class Seven\+Segment\+Display$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$}
+The \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}} class provides support for four-\/digit seven segment display. 
+
+Display segments must be anode(+) and digits must be cathode(-\/). Segments must be connected to eight consecutive pins of the one port. Digits must be connected to four consecutive pins of the second port. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_seven_segment_display_a5dbf9f4d3a0a04e34213d72eac677194}\label{class_seven_segment_display_a5dbf9f4d3a0a04e34213d72eac677194}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!SevenSegmentDisplay@{SevenSegmentDisplay}}
+\index{SevenSegmentDisplay@{SevenSegmentDisplay}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{SevenSegmentDisplay()}{SevenSegmentDisplay()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+\mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\mbox{\hyperlink{class_seven_segment_display}{\+::\+Seven\+Segment\+Display}}}
+
+
+
+Create new \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}} class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em SEGMENTS\+\_\+\+PORT} & -\/ The port for segments a÷g + dot (8). \\
+\hline
+{\em SEGMENT\+\_\+\+FIRST\+\_\+\+PIN} & -\/ The first segments pin. \\
+\hline
+{\em DIGITS\+\_\+\+PORT} & -\/ The port for four digits. \\
+\hline
+{\em DIGITS\+\_\+\+FIRST\+\_\+\+PIN} & -\/ The pin of the first digit.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}}
+\end{DoxySeeAlso}
+\begin{DoxyWarning}{Warning}
+SEGMENT\+\_\+\+FIRST\+\_\+\+PIN cannot be greater that 8. 
+
+SEGMENT\+\_\+\+FIRST\+\_\+\+PIN cannot be greater that 12. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_seven_segment_display_a4fdbdde350d32250977aae0559dcb7a9}\label{class_seven_segment_display_a4fdbdde350d32250977aae0559dcb7a9}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!codeOfDigit@{codeOfDigit}}
+\index{codeOfDigit@{codeOfDigit}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{codeOfDigit()}{codeOfDigit()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+uint16\+\_\+t \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\+::code\+Of\+Digit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{digit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The function return seven-\/segment code from digit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em digit} & -\/ Digit for coding. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Code from digit. If digit is greater than 9 returns 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_seven_segment_display_a1b9e89aed027c88cb796d7083f147b73}\label{class_seven_segment_display_a1b9e89aed027c88cb796d7083f147b73}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!codeOfDots@{codeOfDots}}
+\index{codeOfDots@{codeOfDots}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{codeOfDots()}{codeOfDots()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+uint16\+\_\+t \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\+::code\+Of\+Dots (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{place }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The function return the character of dot if the dot is set in a given place. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em place} & -\/ A place to check the presence of a dot. Place is from 0 to 3, where 0 is first from left place and 3 last from left. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The code of dot if in the given place is the dot or 0 if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_seven_segment_display_ab12b79b164747c3f50a7577315e2de7d}\label{class_seven_segment_display_ab12b79b164747c3f50a7577315e2de7d}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!setDots@{setDots}}
+\index{setDots@{setDots}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{setDots()}{setDots()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+void \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\+::set\+Dots (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{dots }\end{DoxyParamCaption})}
+
+
+
+This function allows you to set dots on display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dots} & -\/ The flags of displayed dots.\\
+\hline
+\end{DoxyParams}
+The dots starting from left have following the flags\+: 0x08, 0x04, 0x02, 0x01. You can use enum dots to facilitate the set dots in the right place.
+
+You can connect the dots using the OR character (\char`\"{}$\vert$\char`\"{}), e.\+g. display.\+set\+Dots(display.\+dots0 $\vert$ display.\+dots1);. \mbox{\Hypertarget{class_seven_segment_display_ab7dfb158cbbb7915ebfad2461d87cbb1}\label{class_seven_segment_display_ab7dfb158cbbb7915ebfad2461d87cbb1}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!setNumber@{setNumber}}
+\index{setNumber@{setNumber}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{setNumber()}{setNumber()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+void \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\+::set\+Number (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{number }\end{DoxyParamCaption})}
+
+
+
+This function allows you to set the displayed number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & -\/ The new displayed number. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_seven_segment_display_adf8076f14623a21fca4ef3608d63ad0a}\label{class_seven_segment_display_adf8076f14623a21fca4ef3608d63ad0a}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!setUpdateFlag@{setUpdateFlag}}
+\index{setUpdateFlag@{setUpdateFlag}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{setUpdateFlag()}{setUpdateFlag()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+void \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\+::set\+Update\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The function sets update\+Flag. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_seven_segment_display_a7718d14f381bd4a2164646920575359b}{update\+Flag}} 
+
+\mbox{\hyperlink{class_seven_segment_display_a8245135a3620eb362b7bb3539f21a115}{update()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_seven_segment_display_a8245135a3620eb362b7bb3539f21a115}\label{class_seven_segment_display_a8245135a3620eb362b7bb3539f21a115}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!update@{update}}
+\index{update@{update}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+void \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\+::update}
+
+
+
+The function refresh next digit if update\+Flag is set. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_seven_segment_display_a7718d14f381bd4a2164646920575359b}{update\+Flag}} 
+
+\mbox{\hyperlink{class_seven_segment_display_adf8076f14623a21fca4ef3608d63ad0a}{set\+Update\+Flag()}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_seven_segment_display_acd3a7e2ddff8f861fd7090ffb529def7}\label{class_seven_segment_display_acd3a7e2ddff8f861fd7090ffb529def7}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!dots@{dots}}
+\index{dots@{dots}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{dots}{dots}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+uint8\+\_\+t \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\+::dots\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The displayed dots. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_seven_segment_display_ab12b79b164747c3f50a7577315e2de7d}{set\+Dots()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_seven_segment_display_a4c0734083989edca78f98d8dc6cdeddd}\label{class_seven_segment_display_a4c0734083989edca78f98d8dc6cdeddd}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!number@{number}}
+\index{number@{number}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{number}{number}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+uint16\+\_\+t \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\+::number\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The displayed number. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_seven_segment_display_ab7dfb158cbbb7915ebfad2461d87cbb1}{set\+Number()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_seven_segment_display_a7718d14f381bd4a2164646920575359b}\label{class_seven_segment_display_a7718d14f381bd4a2164646920575359b}} 
+\index{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}!updateFlag@{updateFlag}}
+\index{updateFlag@{updateFlag}!SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$@{SevenSegmentDisplay$<$ SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN $>$}}
+\doxysubsubsection{\texorpdfstring{updateFlag}{updateFlag}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} SEGMENTS\+\_\+\+PORT, uint8\+\_\+t SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} DIGITS\+\_\+\+PORT, uint8\+\_\+t DIGITS\+\_\+\+FIRST\+\_\+\+PIN$>$ \\
+bool \mbox{\hyperlink{class_seven_segment_display}{Seven\+Segment\+Display}}$<$ SEGMENTS\+\_\+\+PORT, SEGMENT\+\_\+\+FIRST\+\_\+\+PIN, DIGITS\+\_\+\+PORT, DIGITS\+\_\+\+FIRST\+\_\+\+PIN $>$\+::update\+Flag\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The flag for refreshing the next digit. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_seven_segment_display_adf8076f14623a21fca4ef3608d63ad0a}{set\+Update\+Flag()}} 
+
+\mbox{\hyperlink{class_seven_segment_display_a8245135a3620eb362b7bb3539f21a115}{update()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Core/\+Seven\+Segment\+Display/\mbox{\hyperlink{seven_segment_display_8hpp}{seven\+Segment\+Display.\+hpp}}\end{DoxyCompactItemize}

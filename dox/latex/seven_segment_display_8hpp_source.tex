@@ -1,0 +1,176 @@
+\hypertarget{seven_segment_display_8hpp_source}{}\doxysection{seven\+Segment\+Display.\+hpp}
+\label{seven_segment_display_8hpp_source}\index{Core/SevenSegmentDisplay/sevenSegmentDisplay.hpp@{Core/SevenSegmentDisplay/sevenSegmentDisplay.hpp}}
+\mbox{\hyperlink{seven_segment_display_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef SEVENSEGMENTDISPLAY\_SEVENSEGMENTDISPLAY\_HPP\_}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define SEVENSEGMENTDISPLAY\_SEVENSEGMENTDISPLAY\_HPP\_}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{gpio_8h}{gpio.h}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}../TemplateParametr/gpioParametr.hpp"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{enum} dots\{}
+\DoxyCodeLine{15     dots0 = 0x08,}
+\DoxyCodeLine{16     dots1 = 0x04,}
+\DoxyCodeLine{17     dots2 = 0x02,}
+\DoxyCodeLine{18     dots3 = 0x01,}
+\DoxyCodeLine{19 \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{28 \textcolor{keyword}{template} <Port SEGMENTS\_PORT, u\textcolor{keywordtype}{int}8\_t SEGMENT\_FIRST\_PIN, Port DIGITS\_PORT, u\textcolor{keywordtype}{int}8\_t DIGITS\_FIRST\_PIN>}
+\DoxyCodeLine{29 \textcolor{keyword}{class }\mbox{\hyperlink{class_seven_segment_display}{SevenSegmentDisplay}} \{}
+\DoxyCodeLine{30     \textcolor{keyword}{static\_assert}(SEGMENT\_FIRST\_PIN <= 8, \textcolor{stringliteral}{"{}SEGMENT\_FIRST\_PIN can't be greater than 8"{}});}
+\DoxyCodeLine{31     \textcolor{keyword}{static\_assert}(DIGITS\_FIRST\_PIN <= 12, \textcolor{stringliteral}{"{}DIGITS\_FIRST\_PIN can't be greater than 12"{}});}
+\DoxyCodeLine{35     \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{36         segA = 1 << SEGMENT\_FIRST\_PIN,}
+\DoxyCodeLine{37         segB = segA << 1,}
+\DoxyCodeLine{38         segC = segB << 1,}
+\DoxyCodeLine{39         segD = segC << 1,}
+\DoxyCodeLine{40         segE = segD << 1,}
+\DoxyCodeLine{41         segF = segE << 1,}
+\DoxyCodeLine{42         segG = segF << 1,}
+\DoxyCodeLine{43         segH = segG << 1,}
+\DoxyCodeLine{44     \};}
+\DoxyCodeLine{48     \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{49         dig0 = 1 << DIGITS\_FIRST\_PIN,}
+\DoxyCodeLine{50         dig1 = dig0 << 1,}
+\DoxyCodeLine{51         dig2 = dig1 << 1,}
+\DoxyCodeLine{52         dig3 = dig2 << 1,}
+\DoxyCodeLine{53     \};}
+\DoxyCodeLine{54 \textcolor{keyword}{public}:}
+\DoxyCodeLine{55     \mbox{\hyperlink{class_seven_segment_display_a5dbf9f4d3a0a04e34213d72eac677194}{SevenSegmentDisplay}}();}
+\DoxyCodeLine{56     \mbox{\hyperlink{class_seven_segment_display_a722d36c9af3a2477fae6b289d981a132}{\string~SevenSegmentDisplay}}();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_seven_segment_display_ab7dfb158cbbb7915ebfad2461d87cbb1}{setNumber}}(uint16\_t \mbox{\hyperlink{class_seven_segment_display_a4c0734083989edca78f98d8dc6cdeddd}{number}});}
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_seven_segment_display_ab12b79b164747c3f50a7577315e2de7d}{setDots}}(uint8\_t dots);}
+\DoxyCodeLine{60     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_seven_segment_display_a8245135a3620eb362b7bb3539f21a115}{update}}();}
+\DoxyCodeLine{61     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_seven_segment_display_af3405e4f9d91b6112bc70977cc13faf0}{forceUpdate}}();}
+\DoxyCodeLine{67     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_seven_segment_display_adf8076f14623a21fca4ef3608d63ad0a}{setUpdateFlag}}()\{\mbox{\hyperlink{class_seven_segment_display_a7718d14f381bd4a2164646920575359b}{updateFlag}} = \textcolor{keyword}{true};\}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{keyword}{private}:}
+\DoxyCodeLine{70     uint16\_t \mbox{\hyperlink{class_seven_segment_display_a4fdbdde350d32250977aae0559dcb7a9}{codeOfDigit}}(uint8\_t digit);}
+\DoxyCodeLine{71     uint16\_t \mbox{\hyperlink{class_seven_segment_display_a1b9e89aed027c88cb796d7083f147b73}{codeOfDots}}(uint8\_t place);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{77     uint16\_t \mbox{\hyperlink{class_seven_segment_display_a4c0734083989edca78f98d8dc6cdeddd}{number}};}
+\DoxyCodeLine{82     uint8\_t \mbox{\hyperlink{class_seven_segment_display_acd3a7e2ddff8f861fd7090ffb529def7}{dots}};}
+\DoxyCodeLine{88     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_seven_segment_display_a7718d14f381bd4a2164646920575359b}{updateFlag}};}
+\DoxyCodeLine{92     uint8\_t \mbox{\hyperlink{class_seven_segment_display_a233415a908d88a127e401f1ef8eade00}{currentDisplayDigit}};}
+\DoxyCodeLine{93 \};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 }
+\DoxyCodeLine{110 \textcolor{keyword}{template} <Port SEGMENTS\_PORT, u\textcolor{keywordtype}{int}8\_t SEGMENT\_FIRST\_PIN, Port DIGITS\_PORT, u\textcolor{keywordtype}{int}8\_t DIGITS\_FIRST\_PIN>}
+\DoxyCodeLine{111 \mbox{\hyperlink{class_seven_segment_display_a5dbf9f4d3a0a04e34213d72eac677194}{SevenSegmentDisplay<SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN>::SevenSegmentDisplay}}()}
+\DoxyCodeLine{112     :number(), dots(), updateFlag(), currentDisplayDigit()}
+\DoxyCodeLine{113 \{}
+\DoxyCodeLine{114 \}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{119 \textcolor{keyword}{template} <Port SEGMENTS\_PORT, u\textcolor{keywordtype}{int}8\_t SEGMENT\_FIRST\_PIN, Port DIGITS\_PORT, u\textcolor{keywordtype}{int}8\_t DIGITS\_FIRST\_PIN>}
+\DoxyCodeLine{120 \mbox{\hyperlink{class_seven_segment_display_a722d36c9af3a2477fae6b289d981a132}{SevenSegmentDisplay<SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN>::\string~SevenSegmentDisplay}}()}
+\DoxyCodeLine{121 \{}
+\DoxyCodeLine{122 \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{128 \textcolor{keyword}{template} <Port SEGMENTS\_PORT, u\textcolor{keywordtype}{int}8\_t SEGMENT\_FIRST\_PIN, Port DIGITS\_PORT, u\textcolor{keywordtype}{int}8\_t DIGITS\_FIRST\_PIN>}
+\DoxyCodeLine{129 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_seven_segment_display_ab7dfb158cbbb7915ebfad2461d87cbb1}{SevenSegmentDisplay<SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN>::setNumber}}(uint16\_t number)}
+\DoxyCodeLine{130 \{}
+\DoxyCodeLine{131     this-\/>number = number \% 10000;}
+\DoxyCodeLine{132 \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{143 \textcolor{keyword}{template} <Port SEGMENTS\_PORT, u\textcolor{keywordtype}{int}8\_t SEGMENT\_FIRST\_PIN, Port DIGITS\_PORT, u\textcolor{keywordtype}{int}8\_t DIGITS\_FIRST\_PIN>}
+\DoxyCodeLine{144 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_seven_segment_display_ab12b79b164747c3f50a7577315e2de7d}{SevenSegmentDisplay<SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN>::setDots}}(uint8\_t dots)}
+\DoxyCodeLine{145 \{}
+\DoxyCodeLine{146     this-\/>dots = dots;}
+\DoxyCodeLine{147 \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{154 \textcolor{keyword}{template} <Port SEGMENTS\_PORT, u\textcolor{keywordtype}{int}8\_t SEGMENT\_FIRST\_PIN, Port DIGITS\_PORT, u\textcolor{keywordtype}{int}8\_t DIGITS\_FIRST\_PIN>}
+\DoxyCodeLine{155 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_seven_segment_display_a8245135a3620eb362b7bb3539f21a115}{SevenSegmentDisplay<SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN>::update}}()}
+\DoxyCodeLine{156 \{}
+\DoxyCodeLine{157     \textcolor{keywordflow}{if}(updateFlag)\{}
+\DoxyCodeLine{158         updateFlag = \textcolor{keyword}{false};}
+\DoxyCodeLine{159         forceUpdate();}
+\DoxyCodeLine{160     \}}
+\DoxyCodeLine{161 \}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{166 \textcolor{keyword}{template} <Port SEGMENTS\_PORT, u\textcolor{keywordtype}{int}8\_t SEGMENT\_FIRST\_PIN, Port DIGITS\_PORT, u\textcolor{keywordtype}{int}8\_t DIGITS\_FIRST\_PIN>}
+\DoxyCodeLine{167 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_seven_segment_display_af3405e4f9d91b6112bc70977cc13faf0}{SevenSegmentDisplay<SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN>::forceUpdate}}()}
+\DoxyCodeLine{168 \{}
+\DoxyCodeLine{169     (\&DIGITS\_PORT)-\/>BSRR = dig0 | dig1 | dig2 | dig3;}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     \textcolor{keywordflow}{switch}(currentDisplayDigit)}
+\DoxyCodeLine{172     \{}
+\DoxyCodeLine{173     \textcolor{keywordflow}{case} 0:\{}
+\DoxyCodeLine{174         uint16\_t code = codeOfDigit(number / 1000) | codeOfDots(3);}
+\DoxyCodeLine{175         (\&SEGMENTS\_PORT)-\/>BSRR = code | (\string~code << 16);}
+\DoxyCodeLine{176         (\&DIGITS\_PORT)-\/>BRR = dig0;}
+\DoxyCodeLine{177         currentDisplayDigit = 1;}
+\DoxyCodeLine{178         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{179     \}}
+\DoxyCodeLine{180     \textcolor{keywordflow}{case} 1:\{}
+\DoxyCodeLine{181         uint16\_t code = codeOfDigit((number / 100) \% 10) | codeOfDots(2);}
+\DoxyCodeLine{182         (\&SEGMENTS\_PORT)-\/>BSRR = code | (\string~code << 16);}
+\DoxyCodeLine{183         (\&DIGITS\_PORT)-\/>BRR = dig1;}
+\DoxyCodeLine{184         currentDisplayDigit = 2;}
+\DoxyCodeLine{185         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{186     \}}
+\DoxyCodeLine{187     \textcolor{keywordflow}{case} 2:\{}
+\DoxyCodeLine{188         uint16\_t code = codeOfDigit((number / 10) \% 10) | codeOfDots(1);}
+\DoxyCodeLine{189         (\&SEGMENTS\_PORT)-\/>BSRR = code | (\string~code << 16);}
+\DoxyCodeLine{190         (\&DIGITS\_PORT)-\/>BRR = dig2;}
+\DoxyCodeLine{191         currentDisplayDigit = 3;}
+\DoxyCodeLine{192         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{193     \}}
+\DoxyCodeLine{194     \textcolor{keywordflow}{case} 3:\{}
+\DoxyCodeLine{195         uint16\_t code = codeOfDigit(number \% 10);}
+\DoxyCodeLine{196         (\&SEGMENTS\_PORT)-\/>BSRR = code | (\string~code << 16) | codeOfDots(0);}
+\DoxyCodeLine{197         (\&DIGITS\_PORT)-\/>BRR = dig3;}
+\DoxyCodeLine{198         currentDisplayDigit = 0;}
+\DoxyCodeLine{199         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{200     \}}
+\DoxyCodeLine{201     \}}
+\DoxyCodeLine{202 \}}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{209 \textcolor{keyword}{template} <Port SEGMENTS\_PORT, u\textcolor{keywordtype}{int}8\_t SEGMENT\_FIRST\_PIN, Port DIGITS\_PORT, u\textcolor{keywordtype}{int}8\_t DIGITS\_FIRST\_PIN>}
+\DoxyCodeLine{210 uint16\_t \mbox{\hyperlink{class_seven_segment_display_a4fdbdde350d32250977aae0559dcb7a9}{SevenSegmentDisplay<SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN>::codeOfDigit}}(uint8\_t digit)}
+\DoxyCodeLine{211 \{}
+\DoxyCodeLine{212     \textcolor{keywordflow}{switch}(digit)}
+\DoxyCodeLine{213     \{}
+\DoxyCodeLine{214     \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{215         \textcolor{keywordflow}{return} segA | segB | segC | segD | segE | segF;}
+\DoxyCodeLine{216     \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{217         \textcolor{keywordflow}{return} segB | segC;}
+\DoxyCodeLine{218     \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{219         \textcolor{keywordflow}{return} segA | segB | segD | segE | segG;}
+\DoxyCodeLine{220     \textcolor{keywordflow}{case} 3:}
+\DoxyCodeLine{221         \textcolor{keywordflow}{return} segA | segB | segC | segD | segG;}
+\DoxyCodeLine{222     \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{223         \textcolor{keywordflow}{return} segB | segC | segF | segG;}
+\DoxyCodeLine{224     \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{225         \textcolor{keywordflow}{return} segA | segC | segD | segF | segG;}
+\DoxyCodeLine{226     \textcolor{keywordflow}{case} 6:}
+\DoxyCodeLine{227         \textcolor{keywordflow}{return} segA | segC | segD | segE | segF | segG;}
+\DoxyCodeLine{228     \textcolor{keywordflow}{case} 7:}
+\DoxyCodeLine{229         \textcolor{keywordflow}{return} segA | segB | segC;}
+\DoxyCodeLine{230     \textcolor{keywordflow}{case} 8:}
+\DoxyCodeLine{231         \textcolor{keywordflow}{return} segA | segB | segC | segD | segE | segF | segG;}
+\DoxyCodeLine{232     \textcolor{keywordflow}{case} 9:}
+\DoxyCodeLine{233         \textcolor{keywordflow}{return} segA | segB | segC | segD | segF | segG;}
+\DoxyCodeLine{234     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{235         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{236     \}}
+\DoxyCodeLine{237 \}}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{244 \textcolor{keyword}{template} <Port SEGMENTS\_PORT, u\textcolor{keywordtype}{int}8\_t SEGMENT\_FIRST\_PIN, Port DIGITS\_PORT, u\textcolor{keywordtype}{int}8\_t DIGITS\_FIRST\_PIN>}
+\DoxyCodeLine{245 uint16\_t \mbox{\hyperlink{class_seven_segment_display_a1b9e89aed027c88cb796d7083f147b73}{SevenSegmentDisplay<SEGMENTS\_PORT, SEGMENT\_FIRST\_PIN, DIGITS\_PORT, DIGITS\_FIRST\_PIN>::codeOfDots}}(uint8\_t place)}
+\DoxyCodeLine{246 \{}
+\DoxyCodeLine{247     uint8\_t isDots = dots \& (0x08 >> place);}
+\DoxyCodeLine{248     \textcolor{keywordflow}{if}(isDots)\{}
+\DoxyCodeLine{249         \textcolor{keywordflow}{return} segH;}
+\DoxyCodeLine{250     \}}
+\DoxyCodeLine{251     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{252 \}}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* SEVENSEGMENTDISPLAY\_SEVENSEGMENTDISPLAY\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

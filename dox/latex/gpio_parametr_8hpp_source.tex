@@ -1,0 +1,53 @@
+\hypertarget{gpio_parametr_8hpp_source}{}\doxysection{gpio\+Parametr.\+hpp}
+\label{gpio_parametr_8hpp_source}\index{Core/TemplateParametr/gpioParametr.hpp@{Core/TemplateParametr/gpioParametr.hpp}}
+\mbox{\hyperlink{gpio_parametr_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef TEMPLATEPARAMETR\_GPIOPARAMETR\_HPP\_}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define TEMPLATEPARAMETR\_GPIOPARAMETR\_HPP\_}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{gpio_8h}{gpio.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{15 \textcolor{keyword}{enum class} \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} : uint8\_t}
+\DoxyCodeLine{16 \{}
+\DoxyCodeLine{17     A,}
+\DoxyCodeLine{18     B,}
+\DoxyCodeLine{19     C,}
+\DoxyCodeLine{20     D,}
+\DoxyCodeLine{21     E}
+\DoxyCodeLine{22 \};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{32 \textcolor{keyword}{constexpr} GPIO\_TypeDef * \mbox{\hyperlink{gpio_parametr_8hpp_af61f2173804ba076853820a9ab8893af}{getPort}}(\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} port)}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34     \textcolor{keywordflow}{switch}(port)}
+\DoxyCodeLine{35     \{}
+\DoxyCodeLine{36     \textcolor{keywordflow}{case} Port::A:}
+\DoxyCodeLine{37         \textcolor{keywordflow}{return} GPIOA;}
+\DoxyCodeLine{38     \textcolor{keywordflow}{case} Port::B:}
+\DoxyCodeLine{39         \textcolor{keywordflow}{return} GPIOB;}
+\DoxyCodeLine{40     \textcolor{keywordflow}{case} Port::C:}
+\DoxyCodeLine{41         \textcolor{keywordflow}{return} GPIOC;}
+\DoxyCodeLine{42     \textcolor{keywordflow}{case} Port::D:}
+\DoxyCodeLine{43         \textcolor{keywordflow}{return} GPIOD;}
+\DoxyCodeLine{44     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{45         \textcolor{keywordflow}{return} GPIOE;}
+\DoxyCodeLine{46     \}}
+\DoxyCodeLine{47     \textcolor{keywordflow}{return} GPIOE;}
+\DoxyCodeLine{48 \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{56 \textcolor{keyword}{constexpr} GPIO\_TypeDef * \mbox{\hyperlink{gpio_parametr_8hpp_a30b33640196cc1fcf88b89fad23fc9cc}{operator\&}}(\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} port)}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58     \textcolor{keywordflow}{return} \mbox{\hyperlink{gpio_parametr_8hpp_af61f2173804ba076853820a9ab8893af}{getPort}}(port);}
+\DoxyCodeLine{59 \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{65 \textcolor{keyword}{constexpr} GPIO\_TypeDef * \mbox{\hyperlink{gpio_parametr_8hpp_a3c5d214480d8acb363e903b8cec130a6}{operator-\/-\/}}(\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} port, \textcolor{keywordtype}{int})}
+\DoxyCodeLine{66 \{}
+\DoxyCodeLine{67     \textcolor{keywordflow}{return} \mbox{\hyperlink{gpio_parametr_8hpp_af61f2173804ba076853820a9ab8893af}{getPort}}(port);}
+\DoxyCodeLine{68 \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* TEMPLATEPARAMETR\_GPIOPARAMETR\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

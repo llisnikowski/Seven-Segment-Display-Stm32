@@ -1,0 +1,89 @@
+\hypertarget{gpio_parametr_8hpp}{}\doxysection{Core/\+Template\+Parametr/gpio\+Parametr.hpp File Reference}
+\label{gpio_parametr_8hpp}\index{Core/TemplateParametr/gpioParametr.hpp@{Core/TemplateParametr/gpioParametr.hpp}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$gpio.\+h$>$}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}\label{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}} 
+enum class \mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} \+: uint8\+\_\+t \{ \newline
+{\bfseries A}
+, {\bfseries B}
+, {\bfseries C}
+, {\bfseries D}
+, \newline
+{\bfseries E}
+ \}
+\begin{DoxyCompactList}\small\item\em The enum of ports. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr GPIO\+\_\+\+Type\+Def $\ast$ \mbox{\hyperlink{gpio_parametr_8hpp_af61f2173804ba076853820a9ab8893af}{get\+Port}} (\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} port)
+\begin{DoxyCompactList}\small\item\em Function return GPIO\+\_\+\+Type\+Def $\ast$ based on the enum class Port. \end{DoxyCompactList}\item 
+constexpr GPIO\+\_\+\+Type\+Def $\ast$ \mbox{\hyperlink{gpio_parametr_8hpp_a30b33640196cc1fcf88b89fad23fc9cc}{operator\&}} (\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} port)
+\begin{DoxyCompactList}\small\item\em The equivalent to get\+Port function. \end{DoxyCompactList}\item 
+constexpr GPIO\+\_\+\+Type\+Def $\ast$ \mbox{\hyperlink{gpio_parametr_8hpp_a3c5d214480d8acb363e903b8cec130a6}{operator-\/-\/}} (\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} port, int)
+\begin{DoxyCompactList}\small\item\em The equivalent to get\+Port function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+by Łukasz Liśnikowski 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gpio_parametr_8hpp_af61f2173804ba076853820a9ab8893af}\label{gpio_parametr_8hpp_af61f2173804ba076853820a9ab8893af}} 
+\index{gpioParametr.hpp@{gpioParametr.hpp}!getPort@{getPort}}
+\index{getPort@{getPort}!gpioParametr.hpp@{gpioParametr.hpp}}
+\doxysubsubsection{\texorpdfstring{getPort()}{getPort()}}
+{\footnotesize\ttfamily constexpr GPIO\+\_\+\+Type\+Def $\ast$ get\+Port (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}}}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Function return GPIO\+\_\+\+Type\+Def $\ast$ based on the enum class Port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The port number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The address for the corresponding port 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}} 
+
+\mbox{\hyperlink{gpio_parametr_8hpp_a30b33640196cc1fcf88b89fad23fc9cc}{operator\&(\+Port port)}} 
+
+\mbox{\hyperlink{gpio_parametr_8hpp_a3c5d214480d8acb363e903b8cec130a6}{operator-\/-\/(\+Port port, int)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{gpio_parametr_8hpp_a30b33640196cc1fcf88b89fad23fc9cc}\label{gpio_parametr_8hpp_a30b33640196cc1fcf88b89fad23fc9cc}} 
+\index{gpioParametr.hpp@{gpioParametr.hpp}!operator\&@{operator\&}}
+\index{operator\&@{operator\&}!gpioParametr.hpp@{gpioParametr.hpp}}
+\doxysubsubsection{\texorpdfstring{operator\&()}{operator\&()}}
+{\footnotesize\ttfamily constexpr GPIO\+\_\+\+Type\+Def $\ast$ operator\& (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}}}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+The equivalent to get\+Port function. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{gpio_parametr_8hpp_af61f2173804ba076853820a9ab8893af}{get\+Port(\+Port port)}} 
+\end{DoxySeeAlso}
+\begin{DoxyWarning}{Warning}
+The operator -\/\texorpdfstring{$>$}{>} has a higher priority than \&, so if you want to use these operators, you have to use additional parentheses, e.\+g. (\&Port\+::A)-\/\texorpdfstring{$>$}{>}BSRR 
+\end{DoxyWarning}
+\mbox{\Hypertarget{gpio_parametr_8hpp_a3c5d214480d8acb363e903b8cec130a6}\label{gpio_parametr_8hpp_a3c5d214480d8acb363e903b8cec130a6}} 
+\index{gpioParametr.hpp@{gpioParametr.hpp}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!gpioParametr.hpp@{gpioParametr.hpp}}
+\doxysubsubsection{\texorpdfstring{operator-\/-\/()}{operator--()}}
+{\footnotesize\ttfamily constexpr GPIO\+\_\+\+Type\+Def $\ast$ operator-\/-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gpio_parametr_8hpp_a274c161dafee30809216ebf7a4b8d821}{Port}}}]{port,  }\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+The equivalent to get\+Port function. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{gpio_parametr_8hpp_af61f2173804ba076853820a9ab8893af}{get\+Port(\+Port port)}} 
+\end{DoxySeeAlso}
